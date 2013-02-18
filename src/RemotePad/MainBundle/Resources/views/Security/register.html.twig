@@ -1,0 +1,38 @@
+{% extends 'RemotePadMainBundle:Layout:modal.html.twig' %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/registerManager.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+    
+    var registerManager;
+    
+    $(document).ready(function() {
+
+        var applicationPath = "{{ path('RemotePadMainBundle_homepage') }}";
+        registerManager = RegisterManager(applicationPath);               
+        registerManager.initEvents();
+        
+    });
+    
+    </script>
+{% endblock %}
+
+
+{% block modalId %}rp_registerModal{% endblock %}
+
+{% block modalHeader %}
+    {{ parent() }}
+<h3>Register</h3>
+{% endblock %}
+
+{% block modalBody %}
+
+<div id="rp_registerFormContainer">
+    {% render url('fos_user_registration_register') %}
+</div>
+
+{% endblock %}
+
+{% block modalButton %}
+<a href="#" class="cancel btn" data-dismiss="modal">Close</a>
+{% endblock %}

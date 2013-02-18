@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<remote id="{{ remote.id }}" name="{{ remote.name }}">
+
+{% for button in remote.buttons %}
+    <button>
+        <x>{{ button.x }}</x>
+        <y>{{ button.y }}</y>
+
+        <image>{{ button.image.id }}</image> 
+
+        <width>{{ button.width }}</width>
+        <height>{{ button.height }}</height>
+
+        <shortcut>{{ button.shortcut }}</shortcut>
+    </button>
+    
+{% endfor %}
+    
+</remote>

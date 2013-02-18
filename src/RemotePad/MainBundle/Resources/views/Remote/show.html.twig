@@ -1,0 +1,17 @@
+{% extends 'RemotePadMainBundle:Layout:main.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/Remote/remote.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    {% include 'RemotePadMainBundle:Remote:remote.html.twig' with {'remote': remote} %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+.phonesIntf{ 
+    left: 160px;
+    position: absolute;
+    top: 12px;
+}
+
+.phonesIntf label a { 
+    color: black;
+    font-size: 20px;
+}
+
+.remotes {
+    float: left;
+    position: relative;
+    width: 350px;
+    margin-bottom: 20px;
+}
+
+.phones {
+    width: 150px;
+}
+
+#rp_remoteContainer{
+    padding-left: 20%;
+}
+
+

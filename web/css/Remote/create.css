@@ -1,0 +1,30 @@
+#showEditButtonIntf{
+    margin-top: 40px;
+    display: none;
+}
+
+#buttonContainer {
+    color: white;
+    left: 300px;
+    top: 76px;
+    position: absolute;
+    text-align: right;
+}
+
+#editButton {
+    float: right;
+    margin-right: 4px;
+}
+#removeButton{
+    float: right;
+}
+
+#showEditButtonIntf label, #buttonContainer label{
+    color: black;
+    display: inline;
+    margin-right: 5px;
+}
+
+.ui-draggable-disabled, .ui-state-disabled, .ui-resizable-disabled {
+    opacity: 0.8;
+}

@@ -1,0 +1,103 @@
+{% extends 'RemotePadMainBundle:Layout:main.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/Home/index.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+
+{% block body %}
+
+<script>
+$('.carousel').carousel();
+    </script>
+
+    <div class="carousel slide" id="myCarousel">
+        <div class="carousel-inner">
+            <div class="item">
+                <h2 class="rp_catchTopLeft">Tapibus ac facilisis!</h2>
+                <h2 class="rp_catchBottomRight">Uestas eget qua</h2>
+                <img alt="" src="{{ asset('images/slider.png') }}">
+                <div class="carousel-caption">
+                    <h4>First Thumbnail label</h4>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at <br/> 
+                        eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>
+            </div>
+            <div class="item active">
+                <h2 class="rp_catchTopLeft">Turn your phone into a TrackPad!</h2>
+                <h2 class="rp_catchBottomRight">Use it everywhere!</h2>
+                <img alt="" src="{{ asset('images/slider.png') }}">
+                <div class="carousel-caption">
+                    <h4>Second Thumbnail label</h4>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>
+            </div>
+            <div class="item">
+                <h2 class="rp_catchTopLeft">Cras justo odio, dap!</h2>
+                <h2 class="rp_catchBottomRight">Un mi porta gravida at</h2>
+                <img alt="" src="{{ asset('images/slider.png') }}">
+                <div class="carousel-caption">
+                    <h4>Third Thumbnail label</h4>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>
+            </div>
+        </div>
+        <a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
+        <a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
+
+<!--<img data-slide="prev" class="left carousel-control" alt="" src="{{ asset('images/carousel_left.png') }}">
+    <img data-slide="next" class="right carousel-control" alt="" src="{{ asset('images/carousel_right.png') }}">-->
+    </div>
+
+    <table id="rp_phoneBrandContainer">
+        <tr>
+            <td class="rp_phoneBrand" id="rp_phoneBrandApple">
+                <img alt="" src="{{ asset('images/apple_logo.png') }}">
+            </td>
+            <td class="rp_phoneBrand" id="rp_phoneBrandAndroid">
+                <img alt="" src="{{ asset('images/android_logo.png') }}">
+            </td>
+            <td class="rp_phoneBrand" id="rp_phoneBrandWindows">
+                <img alt="" src="{{ asset('images/windows_phone_logo.png') }}">
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+
+    <table id="rp_fonctionalityContainer">
+        <tr>
+            <td class="rp_fonctionalityImg">
+                <img alt="" src="{{ asset('images/phone_hor.png') }}">
+            </td>
+            <td class="rp_fonctionality">
+                <h3>Drag and drop</h3>
+                <span>Cras justo odio, dapibus ac facilisis in, egestas eget quam.<br> Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="rp_fonctionalityImg">
+                <img alt="" src="{{ asset('images/phone_hor.png') }}">
+            </td>
+            <td class="rp_fonctionality">
+                <h3>Drag and drop</h3>
+                <span>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget<br> metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="rp_fonctionalityImg">
+                <img alt="" src="{{ asset('images/phone_hor.png') }}">
+            </td>
+            <td class="rp_fonctionality">
+                <h3>Drag and drop</h3>
+                <span>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida<br> at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+{% endblock %}

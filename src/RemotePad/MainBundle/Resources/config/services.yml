@@ -1,0 +1,7 @@
+parameters:
+#    remote_pad_main.example.class: RemotePad\MainBundle\Example
+
+services:
+#    remote_pad_main.example:
+#        class: %remote_pad_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

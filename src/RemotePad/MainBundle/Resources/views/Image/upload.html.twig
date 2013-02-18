@@ -1,0 +1,13 @@
+<form id="imageform" action="{{ path('Image_upload') }}" method="post"  style="display: none;" {{ form_enctype(form) }}>
+    
+    {{ form_errors(form) }}
+
+    {{ form_row(form.file) }}
+
+    {{ form_rest(form) }}
+        
+        
+</form>
+ 
+
+   

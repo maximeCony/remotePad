@@ -1,0 +1,31 @@
+<li id="rp_login">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+    <li class="dropdown" id="fat-menu">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Edit info</a></li>
+            <li><a href="#">Change password</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+    </li>
+
+        <logged id="loginStatus" style="display: none;">true</logged>
+
+
+    {% else %}
+<!--<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>-->
+        <a data-toggle="modal" href="#rp_registerModal" >Register</a>
+        or
+        <a data-toggle="modal" href="#rp_loginModal" >Log In</a>
+        <logged id="loginStatus" style="display: none;">false</logged>
+
+    {% endif %}
+    </li>
+
+

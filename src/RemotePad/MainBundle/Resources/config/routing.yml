@@ -1,0 +1,86 @@
+RemotePadMainBundle_homepage:
+    pattern:  /
+    defaults: { _controller: RemotePadMainBundle:Home:index }
+    
+RemotePadMainBundle_logged:
+    pattern:  /logged
+    defaults: { _controller: RemotePadMainBundle:Home:logged }
+    
+RemotePadMainBundle_loginHeader:
+    pattern:  /loginHeader
+    defaults: { _controller: RemotePadMainBundle:Home:loginHeader }
+
+Remote_create:
+    pattern:  /remote/create
+    defaults: { _controller: RemotePadMainBundle:Remote:create }
+    
+Remote_save:
+    pattern:  /remote/save
+    defaults: { _controller: RemotePadMainBundle:Remote:save }
+    
+Remote_getXml:
+    pattern:  /remote/getXml/{id}
+    defaults: { _controller: RemotePadMainBundle:Remote:getXml }
+    
+Remote_show:
+    pattern:  /remote/show/{id}
+    defaults: { _controller: RemotePadMainBundle:Remote:show }
+    requirements:
+        id:  \d+
+
+Remote_remove:
+    pattern:  /remote/remove/{id}
+    defaults: { _controller: RemotePadMainBundle:Remote:remove }
+    requirements:
+        id:  \d+
+
+Remote_edit:
+    pattern:  /remote/edit/{id}
+    defaults: { _controller: RemotePadMainBundle:Remote:edit }
+    requirements:
+        id:  \d+
+        
+Remote_update:
+    pattern:  /remote/{remoteId}/update
+    defaults: { _controller: RemotePadMainBundle:Remote:update }
+    requirements:
+        id:  \d+
+    
+Remote_list:
+    pattern:  /remote/list/{page}
+    defaults: { _controller: RemotePadMainBundle:Remote:list, page: 1 }
+    requirements:
+        id:  \d+
+    
+Remote_listMine:
+    pattern:  /remote/mine/{page}
+    defaults: { _controller: RemotePadMainBundle:Remote:listMine, page: 1 }
+    requirements:
+        id:  \d+
+    
+Image_upload:
+    pattern:  /image/upload
+    defaults: { _controller: RemotePadMainBundle:Image:upload }
+    
+Image_get:
+    pattern:  /image/get/{id}
+    defaults: { _controller: RemotePadMainBundle:Image:get }
+    requirements:
+        id:  \d+
+    
+User_get:
+    pattern:  /user/get
+    defaults: { _controller: RemotePadMainBundle:User:get }
+    
+User_addRemote:
+    pattern:  /user/addRemote/{remoteId}
+    defaults: { _controller: RemotePadMainBundle:User:addRemote }
+    requirements:
+        remoteId:  \d+
+    
+User_getRemoteList:
+    pattern:  /remote/getList/{userId}
+    defaults: { _controller: RemotePadMainBundle:User:getRemoteList }
+    requirements:
+        userId:  \d+
+    

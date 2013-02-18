@@ -1,0 +1,79 @@
+/*.carousel{
+          width: 870px;
+          margin: auto;
+      }*/
+
+
+div.carousel-inner div.item img {
+    margin: auto;
+}
+
+.carousel-caption{
+    background-color: #222222;
+}
+
+#myCarousel div div h2{
+    color: black;
+}
+
+.rp_catchTopLeft{
+    margin-right: 30px;
+    text-align: left;
+    position: absolute;
+    left: 60px;
+    top: 20px;
+}
+
+.rp_catchBottomRight{
+    margin-right: 30px;
+    text-align: right;
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+}
+
+#rp_phoneBrandContainer{
+    height: 250px;
+    width: 100%;
+}
+
+.carousel{
+    margin-bottom: 0px;
+}
+
+#rp_phoneBrandContainer tbody tr {
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.6);
+}
+
+.rp_phoneBrand{
+    /*border: 8px solid;*/
+    height: 100%;
+    width: 33.3%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.rp_phoneBrand:active{
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+#rp_phoneBrandAndroid{
+    background: #A4CA39;
+}
+
+#rp_phoneBrandApple{
+    background: gray;
+}
+
+#rp_phoneBrandWindows{
+    background: #EB0600;
+}
+
+#rp_fonctionalityContainer{
+    color: white;
+}
+
+.rp_fonctionality{
+    padding: 20px;
+    color: black;
+}

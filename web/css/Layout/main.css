@@ -1,0 +1,33 @@
+body{
+    background: url("../../images/back.png") repeat scroll 0 0 #EBEBEB; 
+    
+}                    
+div.navbar-inner div.container{
+   width: 100%;
+}
+
+.container a.brand{
+      margin-left: 20px; 
+}
+
+#content{
+    margin-top: 50px;
+    padding: 0;  
+}
+
+div.carousel-inner div.item img{
+    margin-bottom: 20px;
+}
+
+#rp_login {
+    padding: 8px;
+}
+
+#rp_login a{
+    display: inline;
+    color: #0088CC;
+}
+
+input, textarea, select, .uneditable-input{
+     border: 1px solid #888888;
+}

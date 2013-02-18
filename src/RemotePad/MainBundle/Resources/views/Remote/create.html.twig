@@ -1,0 +1,106 @@
+{% extends 'RemotePadMainBundle:Layout:main.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+<link href="{{ asset('js/jquery-ui/css/ui-lightness/jquery-ui-1.8.19.custom.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('css/Remote/create.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('css/Remote/remote.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script src="{{ asset('js/keycode.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/remoteManager.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery-ui/js/jquery-ui-1.8.19.custom.min.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        var applicationPath = "{{ path('RemotePadMainBundle_homepage') }}";
+        remoteManager = RemoteManager(applicationPath);
+               
+        {% block remoteManagerJS %}{% endblock %}
+                
+        remoteManager.initEvents();
+        
+    });
+    </script>
+
+{% endblock %}
+
+
+{% block body %}
+
+    <div id="buttonContainer">
+
+        <label>Title:</label>
+        <input id="remoteTitle" type="text" value="{% block remoteTitle %}{% endblock %}">
+
+        <br/>
+
+        <label>Description:</label>
+        <textarea id="remoteDescription">{% block remoteDescription %}{% endblock %}</textarea>
+
+        <br/>
+        
+        <label>Category:</label>
+        <select id="selectRemoteCategory">
+        {% if remote is not defined %}
+                <option selected="selected"></option>
+        {% endif %}
+        {% for category in categories %}
+                <option value="{{ category.id }}" {%if remote is defined and category.id == remote.category %}selected="selected"{%endif%}>{{ category.label }}</option>
+        {% endfor %}
+        </select>
+
+        <br/>
+
+        <a id="addButton" class="btn btn-primary" href="#">
+            <i class="icon-plus icon-white"></i>
+            Add button
+        </a>
+
+        {% block SaveButton %}
+        <a id="saveRemote" class="btn btn-success" href="#">
+            <i class="icon-ok icon-white"></i>
+            Save remote
+        </a>
+        {% endblock %}
+
+        <div id="showEditButtonIntf">
+
+            <!--Image url: <input id="buttonUrl" type="text"> <br>-->
+
+            <label>Image:</label>
+            <input id="buttonImageInput" type="text">
+            <input id="buttonImageInputId" type="text" style="display: none;">
+            {% render url('Image_upload') %}
+
+            <div id='preview'>
+            </div>
+
+            <label>Shortcut:</label>
+            <input id="buttonShortcutInput" type="text">
+            <input id="buttonShortcutInputId" type="text" style="display: none;">
+            <br/>
+
+            <a id="removeButton" class="btn btn-danger" href="#">
+                <i class="icon-remove icon-white"></i>
+                Remove
+            </a>
+        </div>
+
+    </div>
+
+
+    {% block phone %}
+    <div id="phoneContainer">
+        <div id="phone">
+            <!-- <div class="button"></div> -->
+        </div>
+    </div>
+    {% endblock %}
+
+{% endblock %}

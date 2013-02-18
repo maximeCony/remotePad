@@ -1,0 +1,38 @@
+#phone {
+    background: none repeat scroll 0 0 gray;
+    border: 1px solid black;
+    height: 167px;
+    left: 8px;
+    position: absolute;
+    top: 29px;
+    width: 103px;
+}
+
+img.buttonImage {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+#phoneContainer {
+    background-image: url("../../images/phone_min.png");
+    background-repeat: no-repeat;
+    height: 250px;
+    margin-left: 16px;
+    position: relative;
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid grey;
+    cursor: pointer;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid white;
+}
+
+.buttonShortcut {
+    display: none;
+}

@@ -1,0 +1,24 @@
+{% block body %}
+
+    <div id="phoneContainer">
+        <div id="phone">
+            {% for button in remote.buttons %}
+                <div class="button" style="position: absolute; top: {{ button.y }}%; left: {{ button.x }}%; width: {{ button.width }}%; height: {{ button.height }}%;">
+                    {% if button.image %}
+                        <img class="buttonImage" src="{{ asset('storage/remotes/images/') }}{{ button.image.id }}.{{ button.image.path }}">
+                        <div class="buttonShortcut">{{ button.shortcut }}</div>
+                        <div style="display: none;" class="buttonImagePath">{{ button.image.id }}.{{ button.image.path }}</div>
+                        <div style="display: none;" class="buttonImageId">{{ button.image.id }}</div>
+                    {% else %}
+                        <img class="buttonImage" src="">
+                        <div class="buttonShortcut"></div>
+                        <div style="display: none;" class="buttonImagePath"></div>
+                        <div style="display: none;" class="buttonImageId"></div>
+                    {% endif %}
+                   
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

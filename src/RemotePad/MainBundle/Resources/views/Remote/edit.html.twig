@@ -1,0 +1,24 @@
+{% extends 'RemotePadMainBundle:Remote:create.html.twig' %}
+
+{% block SaveButton %}
+    <a id="editRemote" class="btn btn-success" href="#">
+        <i class="icon-ok icon-white"></i>
+        Edit remote
+    </a>
+{% endblock %}
+
+{% block phone %}
+    
+    <input id="remoteId" type="hidden" value="{{ remote.id }}">
+    {% include 'RemotePadMainBundle:Remote:remote.html.twig' with {'remote': remote} %}
+
+{% endblock %}
+
+{% block remoteManagerJS %}
+
+    remoteManager.initEditMode();
+    
+{% endblock %}
+    
+{% block remoteTitle %}{{ remote.name }}{% endblock %}
+{% block remoteDescription %}{% if remote.description != null %}{{ remote.description }}{% endif %}{% endblock %}

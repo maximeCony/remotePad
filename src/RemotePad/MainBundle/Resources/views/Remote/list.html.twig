@@ -1,0 +1,90 @@
+{% extends 'RemotePadMainBundle:Layout:main.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset('js/jquery-ui/css/ui-lightness/jquery-ui-1.8.19.custom.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('css/Remote/remote_min.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('css/Remote/list.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+<script src="{{ asset('js/userManager.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        var applicationPath = "{{ path('RemotePadMainBundle_homepage') }}";
+        userManager = UserManager(applicationPath);
+               
+        userManager.initEvents();
+        
+    });
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+    <div id="rp_remoteContainer">
+        {% if remotes %}
+            {% for remote in remotes %}
+
+        <div class="remotes">
+            <div class="phones">
+                        {% include 'RemotePadMainBundle:Remote:remote.html.twig' with {'remote': remote} %}
+                </div>
+                <div class="phonesIntf">
+                    <label>
+                        <a href="{{ path('Remote_show', { 'id': remote.id }) }}">{{ remote.name }}</a>
+                    </label>
+                    <br/>
+
+                    {% if remote.owner.id is defined %}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {% if remote.owner.id == app.user.id %}
+
+                                <a id="removeButton" class="btn btn-danger" href="{{ path('Remote_remove', { 'id': remote.id }) }}">
+                                    <i class="icon-remove icon-white"></i>
+                                    Remove
+                                </a>
+                                <a id="editButton" class="btn btn-primary" href="{{ path('Remote_edit', { 'id': remote.id }) }}">
+                                    <i class="icon-edit icon-white"></i>
+                                    Edit
+                                </a>
+
+                            {% endif %}
+                        {% endif %}
+
+                        {% if app.user not in remote.users %}
+                            <a remoteId="{{ remote.id }}" class="btn btn-primary sendTpPhoneButton">
+                                Send to my phone
+                            </a>
+                        {% endif %}
+
+                    {% endif %}
+                </div>
+            </div>
+
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div id="rp_pager">
+        {% if (page) > 1 %}
+            <div id="prev">
+                <a href="{{ path('Remote_list', { 'page': page - 1 }) }}">Previous page</a>
+            </div>
+        {% endif %}
+
+        {% if (page) < maxPageNumber %}
+            <div id="next">
+                <a href="{{ path('Remote_list', { 'page': page + 1 }) }}">Next page</a>
+            </div>
+        {% endif %}
+    </div>
+
+{{maxPageNumber}}
+{% endblock %}
