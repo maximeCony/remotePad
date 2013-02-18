@@ -1,5 +1,4 @@
 RemotePad
 ========================
 
-Control your computer with your phone
-Build custom remotes
+Control your computer with your phone and build custom remotes
