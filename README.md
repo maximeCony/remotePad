@@ -18,7 +18,12 @@ Control your computer with your phone and build custom remotes
 $ php composer.phar install
 ```
 
-Install database
+##set config
+
+In /app/config/ rename parameters.yml.dist to parameters.yml
+
+Create database
 ```shell
 $ php app/console doctrine:database:create
+$ php app/console doctrine:schema:update --force
 ```
