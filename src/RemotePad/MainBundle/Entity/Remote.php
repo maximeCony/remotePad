@@ -6,9 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * YouFood\RestaurantBundle\Entity\Remote
- *
- * @ORM\Table()
+ * @ORM\Table(name="rp_remote")
  * @ORM\Entity(repositoryClass="RemotePad\MainBundle\Repository\RemoteRepository")
  */
 class Remote {

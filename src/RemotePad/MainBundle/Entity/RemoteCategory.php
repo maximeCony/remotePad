@@ -6,8 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- *
- * @ORM\Table()
+ * @ORM\Table(name="rp_remote_category")
  * @ORM\Entity
  */
 class RemoteCategory {

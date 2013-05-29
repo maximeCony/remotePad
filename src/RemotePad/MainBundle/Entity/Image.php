@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="rp_image")
  * @ORM\HasLifecycleCallbacks
  */
 class Image {

@@ -12,6 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class RemoteRepository extends EntityRepository {
 
+    /*
+    * get remotes by page
+    */
     public function getRemotesByPage($page, $rowPerPage) {
 
         $to = ($page * $rowPerPage);
@@ -26,12 +29,11 @@ class RemoteRepository extends EntityRepository {
         return $query->getResult();
     }
 
+    /*
+    * count remotes
+    */
     public function countRemotes($userId = null) {
 
-        /*
-         * TO DO!
-         *  Find a way to use SELECT SQL_CALC_FOUND_ROWS
-         */
         $query = $this->createQueryBuilder('r')
                 ->select('COUNT(r.id)');
 

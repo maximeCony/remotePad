@@ -12,8 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository {
 
-   public function countRemotes($userId) {
-
+    /*
+    * count remotes
+    */ 
+    public function countRemotes($userId) {
         /*
          * TO DO!
          *  Find a way to use SELECT SQL_CALC_FOUND_ROWS

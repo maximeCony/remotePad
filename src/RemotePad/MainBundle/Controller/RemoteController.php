@@ -13,42 +13,59 @@ use SimpleXMLElement;
 
 class RemoteController extends Controller {
 
+    //number of remotes per page
     private $rowPerPage = 9;
 
+    /*
+    * Serve the create Remote page
+    */
     public function createAction() {
 
         $categories = $this->getDoctrine()
-                ->getRepository('RemotePadMainBundle:RemoteCategory')
-                ->findAll();
+        ->getRepository('RemotePadMainBundle:RemoteCategory')
+        ->findAll();
 
         return $this->render('RemotePadMainBundle:Remote:create.html.twig', array(
-                    'categories' => $categories,
-                ));
+            'categories' => $categories,
+            ));
     }
 
+    /*
+    * Serve the list remotes page
+    */
     public function listAction($page) {
 
+        //get remotes by page
         $remotes = $this->getDoctrine()
-                ->getRepository('RemotePadMainBundle:Remote')
-                ->getRemotesByPage($page, $this->rowPerPage);
+        ->getRepository('RemotePadMainBundle:Remote')
+        ->getRemotesByPage($page, $this->rowPerPage);
 
+        //count remotes
         $countRemotes = $this->getDoctrine()
-                ->getRepository('RemotePadMainBundle:Remote')
-                ->countRemotes();
-
+        ->getRepository('RemotePadMainBundle:Remote')
+        ->countRemotes();
+        //get the max number of pages
         $maxPageNumber = ceil($countRemotes / $this->rowPerPage);
 
-
-        return $this->render('RemotePadMainBundle:Remote:list.html.twig', array('remotes' => $remotes, 'page' => $page, 'maxPageNumber' => $maxPageNumber,));
+        return $this->render('RemotePadMainBundle:Remote:list.html.twig', array(
+            'remotes' => $remotes, 
+            'page' => $page, 
+            'maxPageNumber' => $maxPageNumber,
+            ));
     }
 
+    /*
+    * Serve the list user's remotes page
+    */
     public function listMineAction($page) {
 
         $remotes = null;
+        //get logged user
         $user = $this->get('security.context')->getToken()->getUser();
         $maxPageNumber = 0;
 
-        if (!is_string($user)) {
+        //if there is no logged user
+        if (!$user) {
 
             $to = ($page * $this->rowPerPage);
             $offset = $to - $this->rowPerPage;
@@ -57,71 +74,101 @@ class RemoteController extends Controller {
             $remotes = $user->getRemotes()->slice($offset, $to);
 
             $maxPageNumber = ceil($countRemotes / $this->rowPerPage);
+
+            return $this->render('RemotePadMainBundle:Remote:list.html.twig', array(
+                'remotes' => $remotes, 
+                'page' => $page, 
+                'maxPageNumber' => $maxPageNumber,
+                ));
         }
-        return $this->render('RemotePadMainBundle:Remote:list.html.twig', array('remotes' => $remotes, 'page' => $page, 'maxPageNumber' => $maxPageNumber));
+        return $this->redirect($this->generateUrl('Remote_list'));        
     }
 
+    /*
+    * Serve the remote page
+    */
     public function showAction($id) {
 
         $remote = $this->getDoctrine()
-                ->getRepository('RemotePadMainBundle:Remote')
-                ->find($id);
-        //echo "<pre>" . print_r($remote, true);die();
+        ->getRepository('RemotePadMainBundle:Remote')
+        ->find($id);
+
+        if (!$remote) {
+            return new Response("No Remote found. id: " . $id, 404);
+        }
 
         return $this->render('RemotePadMainBundle:Remote:show.html.twig', array('remote' => $remote));
     }
 
+    /*
+    * Serve the edit remote page
+    */
     public function editAction($id) {
 
         $remote = $this->getDoctrine()
-                ->getRepository('RemotePadMainBundle:Remote')
-                ->find($id);
-        $categories = $this->getDoctrine()
-                ->getRepository('RemotePadMainBundle:RemoteCategory')
-                ->findAll();
+        ->getRepository('RemotePadMainBundle:Remote')
+        ->find($id);
 
+        if (!$remote) {
+            return new Response("No Remote found. id: " . $id, 404);
+        }
+
+        $categories = $this->getDoctrine()
+        ->getRepository('RemotePadMainBundle:RemoteCategory')
+        ->findAll();
 
         return $this->render('RemotePadMainBundle:Remote:edit.html.twig', array(
-                    'remote' => $remote,
-                    'categories' => $categories,
-                ));
+            'remote' => $remote,
+            'categories' => $categories,
+            ));
     }
 
+    /*
+    * Remove a remote
+    */
     public function removeAction($id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $remote = $em->getRepository('RemotePadMainBundle:Remote')->find($id);
+        $remote = $em->getRepository('RemotePadMainBundle:Remote')
+        ->find($id);
 
-        if ($remote) {
-            $em->remove($remote);
-            $em->flush();
+        if (!$remote) {
+            return new Response("No Remote found. id: " . $id, 404);
         }
 
+        $em->remove($remote);
+        $em->flush();
         return $this->redirect($this->generateUrl('Remote_list'));
     }
 
+    /*
+    * Get remote as xml
+    */
     public function getXmlAction($id) {
 
         $remote = $this->getDoctrine()
-                ->getRepository('RemotePadMainBundle:Remote')
-                ->find($id);
-        //echo "<pre>" . print_r($remote, true);die();
+        ->getRepository('RemotePadMainBundle:Remote')
+        ->find($id);
 
+        if (!$remote) {
+            return new Response("No Remote found. id: " . $id, 404);
+        }
         return $this->render('RemotePadMainBundle:Remote:remote.xml.twig', array('remote' => $remote));
     }
 
+    /*
+    * Update the remote
+    */
     public function updateAction(Request $request, $remoteId) {
 
         $remote = $this->getDoctrine()
-                ->getRepository('RemotePadMainBundle:Remote')
-                ->find($remoteId);
+        ->getRepository('RemotePadMainBundle:Remote')
+        ->find($remoteId);
 
         $response = new Response();
 
         if (!$remote) {
-            $response->setContent("RemoteNotFound");
-            $response->setStatusCode(404);
-            return $response;
+            return new Response("No Remote found. id: " . $id, 404);
         }
 
         $remoteJson = $request->request->get("remote", null);
@@ -163,8 +210,8 @@ class RemoteController extends Controller {
 
                             if ($buttonObject->imageId != null) {
                                 $image = $this->getDoctrine()
-                                        ->getRepository('RemotePadMainBundle:Image')
-                                        ->find($buttonObject->imageId);
+                                ->getRepository('RemotePadMainBundle:Image')
+                                ->find($buttonObject->imageId);
 
                                 if ($image)
                                     $button->setImage($image);
@@ -241,8 +288,8 @@ class RemoteController extends Controller {
 
                             if ($buttonObject->imageId != null) {
                                 $image = $this->getDoctrine()
-                                        ->getRepository('RemotePadMainBundle:Image')
-                                        ->find($buttonObject->imageId);
+                                ->getRepository('RemotePadMainBundle:Image')
+                                ->find($buttonObject->imageId);
 
                                 if ($image)
                                     $button->setImage($image);

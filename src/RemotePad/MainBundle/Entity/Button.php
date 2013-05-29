@@ -6,9 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * YouFood\RestaurantBundle\Entity\Button
- *
- * @ORM\Table()
+ * @ORM\Table(name="rp_button")
  * @ORM\Entity
  */
 class Button {
